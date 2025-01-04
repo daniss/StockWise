@@ -1,0 +1,70 @@
+Table organization {
+    id int [pk]
+    name varchar
+    email varchar
+    phone varchar
+    address varchar
+    created_at datetime
+}
+
+Table user {
+    id int [pk]
+    username varchar
+    email varchar
+    password varchar
+    role varchar // Admin, Manager, Viewer, etc.
+    organization_id int [ref: > organization.id] // Liaison avec l'organisation
+    created_at datetime
+}
+
+Table inventory {
+    id int [pk]
+    product_id int [ref: > product.id]
+    price float
+    quantity int
+    threshold int // Minimum stock before reordering
+    supplier_id int [ref: > supplier.id] // if selected, it reorders from this supplier
+    last_updated datetime
+    organization_id int [ref: > organization.id] // Liaison avec l'organisation
+}
+
+Table supplier {
+    id int [pk]
+    name varchar
+    email varchar
+    phone varchar
+    address varchar
+    rating float // Average performance score
+}
+
+Table order {
+    id int [pk]
+    order_date datetime
+    productOrdered_ids int [ref: > product.id] // multiple products can be ordered in a single order
+    status varchar // Pending, Fulfilled, Canceled
+    supplier_id int [ref: > supplier.id]
+    inventory_id int [ref: > inventory.id]
+    estimated_delivery_date datetime
+    total_cost float
+}
+
+Table sales {
+    id int [pk]
+    inventory_id int [ref: > inventory.id]
+    productSold_ids int [ref: > product.id]
+    total_price float
+    sale_date datetime
+}
+
+Table product_moved {
+    id int [pk]
+    product_id int [ref: > product.id]
+    quantity int
+    price float
+}
+
+Table product {
+    id int [pk]
+    name varchar
+    category varchar
+}

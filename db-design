@@ -1,0 +1,100 @@
+Organization Table:
+    id (Primary Key)
+    name
+    email
+    phone
+    address
+    created_at
+
+User Table:
+    id (Primary Key)
+    username
+    email
+    password
+    role (Admin, Manager, Viewer, etc.)
+    organization_id (Foreign Key) // Liaison avec l'organisation
+    created_at
+
+Inventory Table:
+    id (Primary Key)
+    product_id (Foreign Key)
+	price
+    quantity
+    threshold (Minimum stock before reordering) // If the quantity falls below this number and the price is below the one set by the buyer, the system should automatically reorder
+    supplier_id (Foreign Key) // if selected, it reorders from this supplier
+    last_updated
+    organization_id (Foreign Key) // Liaison avec l'organisation
+
+Supplier Table:
+    id (Primary Key)
+    name
+    email
+	phone
+	address
+    rating (Average performance score)
+
+Order Table:
+    id (Primary Key)
+    order_date
+	productOrdered_ids (Foreign Key) // multiple products can be ordered in a single order
+    status (Pending, Fulfilled, Canceled)
+    supplier_id (Foreign Key)
+	inventory_id (Foreign Key)
+	estimated_delivery_date
+    total_cost
+
+Sales Table:
+    id (Primary Key)
+    inventory_id (Foreign Key)
+	productSold_ids (Foreign Key)
+    total_price
+	sale_date
+
+Product Moved Table:
+	id (Primary Key)
+	product_id (Foreign Key)
+	quantity
+	price
+
+Product Table:
+	id (Primary Key)
+	name
+	category
+
+
+Inventory :
+	- Add new product
+	- Update product
+	- Delete product
+	- List all products
+	- Get details of a product
+
+Supplier :
+	- Add new supplier
+	- Update supplier
+	- Delete supplier
+
+Order :
+	- Add new order
+	- Update order
+	- Delete order
+
+Product Order :
+	- Add new product order
+	- Update product order
+	- Delete product order
+
+Sales :
+	- Add new sale
+	- Update sale
+	- Delete sale
+
+Product Moved :
+	- Add new product moved
+	- Update product moved
+	- Delete product moved
+
+Product :
+	- Add new product
+	- Update product
+	- Delete product

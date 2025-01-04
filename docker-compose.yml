@@ -1,0 +1,14 @@
+services:
+  mariadb:
+    image: mariadb
+    container_name: mariadb-container
+    restart: always
+    ports:
+      - "3307:3306"
+    environment:
+      MARIADB_ROOT_PASSWORD: test
+    volumes:
+      - mariadb-data:/var/lib/mysql
+
+volumes:
+  mariadb-data:

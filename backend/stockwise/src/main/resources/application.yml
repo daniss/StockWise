@@ -1,0 +1,28 @@
+spring:
+  application:
+    name: stockwise
+  datasource:
+    url: jdbc:mariadb://localhost:3307/stockwise_db
+    password: test
+    username: root
+    driver-class-name: org.mariadb.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+  security:
+    user:
+      name: user
+      password: password
+    oauth2:
+      client:
+        registration:
+          github:
+            client-id: Ov23liyTFH5FKcvPM4xw
+            client-secret: ec95d559c616d92775f9a9a3d777144d3135d548
+            scope:
+              - read:user
+              - user:email
+security:
+  jwt:
+    secret-key: "dGVzdEtleUZvckp3dFNpZ25hdHVyZUZvckpXVC1zZWN1cmUK123456="
+    expiration-time: 3600000

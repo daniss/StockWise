@@ -1,1 +1,1 @@
-# fact-checker
+# StockWise
